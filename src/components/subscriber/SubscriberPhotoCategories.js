@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, 
-	Image, TextInput, NavigationBar, ImageBackground, Dimensions } from 'react-native';
+	Image, ImageBackground, TextInput, NavigationBar, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import BottomImage2 from '../BottomImage2';
 import NavBar, { NavGroup, NavButton, NavButtonText, NavTitle } 
 	from 'react-native-nav-1';
 import Modal from 'react-native-modal';
+import SubscriberLogin from './SubscriberLogin';
+import Home from '../home/Home';
 
-export default class ActiveBidPhotos extends Component {
 
-	static navigationOptions = ({ navigation, navigationOptions }) => ({
+export default class SubscriberPhotoCategories extends Component {
+
+  static navigationOptions = ({ navigation, navigationOptions }) => ({
     header: null,
   });
 
@@ -18,9 +21,9 @@ export default class ActiveBidPhotos extends Component {
 				visibleModal: false,
 				
     }
-	}
-
-	_goToPhotoCategories = () => {
+  }
+  
+  _goToPhotoCategories = () => {
 		this.setState({ visibleModal: false });
 		this.props.navigation.navigate('PhotoCategories')
 	}
@@ -47,7 +50,7 @@ export default class ActiveBidPhotos extends Component {
 
 	_goToCatcherLatestUpdate = () => {
 		this.setState({ visibleModal: false });
-		this.props.navigation.navigate('CatcherLatestUpdate')
+		this.props.navigation.navigate('All')
 	}
 
 	_goToCatcherLogout = () => {
@@ -81,8 +84,8 @@ export default class ActiveBidPhotos extends Component {
 
 	render() {
 		return(
-			<View style={styles.container}>
-
+			<View style={styles.container}  >
+        
 				<ImageBackground style={{}}
 								source={require('../../images/nav-bg-1.png')}	>
 					<NavBar style={{}}>
@@ -97,7 +100,7 @@ export default class ActiveBidPhotos extends Component {
 
 						<View style={{alignItems: 'center'}}>
 							<NavTitle style={{marginLeft: -35}}>
-								{"Active Bid Photos"}
+								{"Auction Categories"}
 							</NavTitle>
 						</View>
 
@@ -108,48 +111,80 @@ export default class ActiveBidPhotos extends Component {
 
 				<View style={styles.container1}>
 					<View style={styles.imageView}>
-						<Image style={styles.personImage}
-								source={require('../../images/photo-1.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Athletes')} style={{borderRadius: 5}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-1.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-1.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Athletes</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
 						
-						<Image style={styles.personImage}
-							source={require('../../images/photo-2.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Celebrities')} style={{borderRadius: 5}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-2.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-2.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Celebrities</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
 
-						<Image style={styles.personImage}
-								source={require('../../images/photo-3.png')}	/>
 					</View>
 
 					<View style={styles.imageView}>
-						<Image style={styles.personImage}
-								source={require('../../images/photo-4.png')}	/>
-						
-						<Image style={styles.personImage}
-							source={require('../../images/photo-5.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Musicians')} style={{borderRadius: 5}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-3.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-3.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Musicians</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
 
-						<Image style={styles.personImage}
-								source={require('../../images/photo-6.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Rappers')} style={{borderRadius: 5}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-4.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-4.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Rappers</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
+
 					</View>
 
 					<View style={styles.imageView}>
-						<Image style={styles.personImage}
-								source={require('../../images/photo-7.png')}	/>
-						
-						<Image style={styles.personImage}
-							source={require('../../images/photo-8.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Fashion')} style={{borderRadius: 5, zIndex: 1}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-5.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-5.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Fashion</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
 
-						<Image style={styles.personImage}
-								source={require('../../images/photo-9.png')}	/>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('Others')} style={{borderRadius: 5}}>
+							<ImageBackground style={styles.personImage} imageStyle={{ borderRadius: 5 }}
+								source={require('../../images/category-photo-6.png')}	>
+								<View style={styles.personImageContent}>
+									<Image style={styles.itemCenterImage}
+										source={require('../../images/category-photo-6.png')}	/>
+									<Text style={{color: 'white', fontSize: 20}}>Other's</Text>
+								</View>
+							</ImageBackground>
+						</TouchableOpacity>
+
 					</View>
 
-					<View style={styles.imageView}>
-						<Image style={styles.personImage}
-								source={require('../../images/photo-10.png')}	/>
-						
-						<Image style={styles.personImage}
-							source={require('../../images/photo-11.png')}	/>
-
-						<Image style={styles.personImage}
-								source={require('../../images/photo-12.png')}	/>
-					</View>
 				</View>
 
 				<BottomImage2 />
@@ -191,7 +226,7 @@ export default class ActiveBidPhotos extends Component {
 											<Image style={{width: 14, marginRight: 10,}}
 													source={require('../../images/home-icon.png')} 
 													resizeMode="contain" />
-											<TouchableOpacity onPress={this._goToPhotoCategories}>
+											<TouchableOpacity onPress={(this._goToPhotoCategories)}>
 												<Text style={styles.modalItemText}>Home</Text>
 											</TouchableOpacity>
 										</View>
@@ -259,7 +294,7 @@ export default class ActiveBidPhotos extends Component {
 		)
 	}
 }
-	
+
 
 const styles = StyleSheet.create({
   container : {
@@ -279,20 +314,39 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		marginBottom: 5,
+		marginBottom: 15,
 		
 	},
 
 	personImage: {
-		width: Dimensions.get('window').width / 3 - 22,
-		height: Dimensions.get('window').width / 3 - 22,
+		width: Dimensions.get('window').width / 2 - 40,
+		height: Dimensions.get('window').width / 2 - 40,
 		borderColor: '#edecea',
-		borderRadius: 5,
 	},
 
-	leftArrowImage: {
-		width: 50,
+	optionImage: {
+		width: 40,
 		height: 40,
+	},
+
+	personImageContent: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: Dimensions.get('window').width / 2 - 40, 
+		opacity: 0.8, 
+		backgroundColor: '#1e94b3',
+		borderRadius: 5,
+		
+	},
+
+	itemCenterImage: {
+		width: 80,
+		height: 80,
+		borderRadius: 45,
+		borderWidth: 3,
+		borderColor: '#ffffff',
+		marginBottom: 15,
+		marginTop: 10,		
 	},
 
 	modalbg: {
@@ -370,11 +424,6 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginLeft: 10,
 	},
-
-	optionImage: {
-		width: 40,
-		height: 40,
-	},
-
-	
 });
+
+

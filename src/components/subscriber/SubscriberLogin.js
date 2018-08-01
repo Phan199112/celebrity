@@ -40,7 +40,7 @@ class LoginErrorView extends Component {
 }
 
 
-export default class CatcherLogin extends Component {
+export default class SubscriberLogin extends Component {
 	static navigationOptions = { header: null, };
 
 	constructor(props) {
@@ -48,7 +48,7 @@ export default class CatcherLogin extends Component {
     this.state = { 
 			email: '',
 			password: '',
-			type: 1,
+			type: 3,
 			successMsg: '',
 			errorMsg: '',
 			
@@ -72,17 +72,19 @@ export default class CatcherLogin extends Component {
 		})
 		.then((response) =>  response.json())
 		.then((responseJson) => {
-			data
+			console.log('============', responseJson);
+
 			if(responseJson.status === 200) {
 				Keyboard.dismiss();
 				this.setState({successMsg: "Successfully Logged In!"});
 				this.setState({errorMsg: ""});
 
-				this.props.navigation.navigate('PhotoCategories');
+				this.props.navigation.navigate('SubscriberPhotoCategories');
 			}	else { 
 				this.setState({errorMsg: responseJson.message});
 				this.setState({successMsg: ""});
 				
+				console.log('============', responseJson);
 			}
 		})
 		.catch((error) => {
@@ -100,12 +102,12 @@ export default class CatcherLogin extends Component {
 					<LoginErrorView res={ this.state.errorMsg } />
 
 					<Image style={styles.logo}
-								source={require('../../images/catcher-login-logo.png')} />
+								source={require('../../images/subscriber-login-logo.png')} />
 				</View>
 	
 				<View style={styles.container2}>
 					<View style={styles.title}>
-						<Text style={{color: '#1d829e', fontSize: 20, marginRight: 10}}>Catcher</Text>
+						<Text style={{color: '#1d829e', fontSize: 20, marginRight: 10}}>Subscriber</Text>
 						<Text style={{color: '#34d4a6', fontSize: 20}}>Sign in</Text>
 					</View>
 	
@@ -171,7 +173,7 @@ export default class CatcherLogin extends Component {
 						<Text style={{fontSize: 12}}>Don't have an account? </Text>
 						
 						
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('CatcherSignup')} style={{borderBottomWidth: 1, borderBottomColor: '#7bdab8'}}>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('SubscriberSignup')} style={{borderBottomWidth: 1, borderBottomColor: '#7bdab8'}}>
 							<Text style={{color: '#7bdab8', fontSize: 12}}>Sign Up</Text>
 						</TouchableOpacity>
 						

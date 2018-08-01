@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity,
 import { Form, TextValidator } from 'react-native-validator-form';
 import BottomImage from '../BottomImage';
 
-export default class CatcherSignup extends Component {
+export default class SubscriberSignup extends Component {
 
 	static navigationOptions = { header: null, };
 
@@ -17,7 +17,7 @@ export default class CatcherSignup extends Component {
 			password: '',
 			confirm_password: '',
 			phone: '',
-			paypal_link: '',
+			payment_info: '',
 		};
 
 		this.nameChange = this.nameChange.bind(this);
@@ -72,8 +72,8 @@ export default class CatcherSignup extends Component {
 	}
 
 	paypalLinkChange(event) {
-		const paypal_link = event.nativeEvent.text;
-		this.setState({ paypal_link });
+		const payment_info = event.nativeEvent.text;
+		this.setState({ payment_info });
 	}
 
 	submit() {
@@ -100,10 +100,10 @@ export default class CatcherSignup extends Component {
 			"email"   : this.state.email,
 			"password": this.state.password,
 			"phone": this.state.phone,
-			"paypal_link": this.state.paypal_link,
+			"paypal_link": this.state.payment_info,
 		}
 
-		fetch('http://celebritycatcher.com/api/v1/catcher/signup', {
+		fetch('http://celebritycatcher.com/api/v1/subscriber/signup', {
 			 method: 'post',
 			 body:  JSON.stringify(data),
 			 headers: {
@@ -112,12 +112,11 @@ export default class CatcherSignup extends Component {
 		})
 		.then((response) =>  response.json())
 		.then((responseJson) => {
-			console.log('============', responseJson);
 			
 			if(responseJson.status === 200) {
 				Keyboard.dismiss();
 				 
-		  	this.props.navigation.navigate('PhotoCategories');
+				this.props.navigation.navigate('SubscriberPhotoCategories');
 			} else {
 				alert(responseJson.message);
 				
@@ -137,7 +136,7 @@ export default class CatcherSignup extends Component {
 				<KeyboardAvoidingView style={styles.container1}>
 					<Form ref="form" onSubmit={this.handleSubmit} >
 						<View style={styles.title}>
-							<Text style={{color: '#1d829e', fontSize: 24, marginRight: 10}}>Catcher</Text>
+							<Text style={{color: '#1d829e', fontSize: 24, marginRight: 10}}>Subscriber</Text>
 							<Text style={{color: '#34d4a6', fontSize: 24}}>Sign Up</Text>
 						</View>
 		

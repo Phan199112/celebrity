@@ -4,6 +4,8 @@ import Home from './home/Home';
 import First from './First';
 
 export default class Loading extends Component {
+	static navigationOptions = { header: null, };
+	
 	
 	constructor(props) {
 		super(props);
@@ -14,7 +16,8 @@ export default class Loading extends Component {
 
 	componentDidMount() {
 		this.timeoutHandle = setTimeout(() => {
-			this.setState({ component: <Home /> })
+			// this.setState({ component: <Home /> })
+			this.props.navigation.navigate('PhotoCategories');
 		}, 3000);
 	}
 

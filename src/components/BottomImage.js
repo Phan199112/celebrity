@@ -5,7 +5,7 @@ export default class BottomImage extends Component {
     render(){
         return(
 					<View style={styles.container}>
-						<Image style={{width: Dimensions.get('window').width, height: 120}}
+						<Image style={{width: Dimensions.get('window').width, height: 100}}
 							source={require('../images/first-bottom-bg.png')} 
 							resizeMode="stretch" />
 					</View>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, StatusBar, View, TouchableOpacity, 
 	Image, ImageBackground } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
 import Logo from '../Logo.js';
 import BottomImage from '../BottomImage';
 
 export default class Home extends Component {
+	static navigationOptions = { header: null, };
+	
 
 	constructor(props) {
     super(props);
@@ -21,14 +22,15 @@ export default class Home extends Component {
   }
 
 	render() {
+	
 		return(
 			<View style={styles.container}>
 				<View style={styles.container1}>
 					<Logo />
 				</View>
-	
+
 				<View style={styles.container2}>
-					<TouchableOpacity onPress={goToCatcherLogin}>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('CatcherLogin')}>
 						<ImageBackground style={this.state.pressStatus ? styles.buttonPress : styles.catcher} imageStyle={{ borderRadius: 5 }}
 							source={require('../../images/button-bg.png')}>
 						
@@ -38,7 +40,7 @@ export default class Home extends Component {
 						</ImageBackground>
 					</TouchableOpacity>
 	
-					<TouchableOpacity onPress={goToCatcherLogin}>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('SubscriberLogin')}>
 						<View style={styles.subscriber}>
 							<Image style={styles.icon}
 								source={require('../../images/person-group.png')} />
@@ -46,7 +48,7 @@ export default class Home extends Component {
 						</View>
 					</TouchableOpacity>
 	
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('CatcherLogin')}>
 						<View style={styles.celebrity}>
 							<Image style={styles.icon}
 									source={require('../../images/star.png')}
@@ -66,9 +68,6 @@ export default class Home extends Component {
 }
 
 
-const goToCatcherLogin = () => {
-	Actions.catcher_login()
-}
 
 const styles = StyleSheet.create({
 	container: {
